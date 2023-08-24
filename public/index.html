@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WhatsApp Web App</title>
+</head>
+<body>
+    <h1>WhatsApp Web App</h1>
+    <div id="qrCodeContainer">
+        <img id="qrCode" src="" alt="Código QR">
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const qrCodeContainer = document.getElementById('qrCodeContainer');
+        const qrCode = document.getElementById('qrCode');
+        
+        const socket = io(); // Conexión al servidor de sockets
+
+        // Recibe el código QR del servidor y lo muestra en la página
+        socket.on('qrCode', (qrCodeDataURL) => {
+            qrCode.src = qrCodeDataURL;
+            qrCodeContainer.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
